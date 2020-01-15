@@ -7,27 +7,14 @@ function getExclamationMarks(numChars: number) {
 
 interface IProps {
 	name: string,
-	enthusiasmLevel?: number
+	enthusiasmLevel?: number,
+	onIncrement?: () => void;
+	onDecrement?: () => void;
 }
-
-// function Hello({
-// 	name, enthusiasmLevel = 1
-// }: Props) {
-// 	if (enthusiasmLevel <= 0) {
-// 		throw new Error('You could be a little more enthusiastic, :D');
-// 	}
-// 	return (
-// 		<div className="hello">
-// 			<div className="greeting">
-// 				Hello {name + getExclamationMarks(enthusiasmLevel)}
-// 			</div>
-// 		</div>
-// 	)
-// }
 
 class Hello extends React.Component<IProps, object> {
 	public render() {
-		const { name, enthusiasmLevel = 1} = this.props;
+		const { name, enthusiasmLevel = 1, onDecrement, onIncrement} = this.props;
 		if (enthusiasmLevel <= 0) {
 			throw new Error('You could be a little more enthusiastic : d');
 		}
@@ -37,6 +24,8 @@ class Hello extends React.Component<IProps, object> {
 				<div className="greeting">
 					Hello {name + getExclamationMarks(enthusiasmLevel)}
 				</div>
+				<button onClick={onIncrement}>加1</button>
+				<button onClick={onDecrement}>减1</button>
 			</div>
 		)
 	}
