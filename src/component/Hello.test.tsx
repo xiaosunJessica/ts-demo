@@ -7,7 +7,6 @@ enzyme.configure({ adapter: new Adapter() });
 
 it('renders the correct text when no enthusiasm level is given', () => {
 	const hello = enzyme.shallow(<Hello name="Daniel" />);
-	console.info(hello.find('.greeting').text())
 	expect(hello.find('.greeting').text()).toEqual('Hello Daniel!')
 });
 
