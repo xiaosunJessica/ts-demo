@@ -6,6 +6,7 @@ import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
+console.info(store.getState(), 'storestorestorestore')
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
