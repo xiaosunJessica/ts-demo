@@ -49,7 +49,57 @@
 // 	)
 // }
 
-// 添加shallowEqual, 如果是对象，值一样，不会触发re-render
+//-------------------------
+
+// // 添加shallowEqual, 如果是对象，值一样，不会触发re-render
+
+// import * as React from 'react';
+// import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+// import {incrementAction, resetAction, incrementObjAction, resetObjAction} from '../../actions'
+
+// export const DemoUseSelector = () => {
+// 	const dispatch = useDispatch()
+//   const counter = useSelector((state: any) => {
+// 		console.info(state, '----state-----')
+// 		return state.count
+// 	}, shallowEqual)
+//   const counterObj = useSelector((state: any) => {
+// 		console.info(state, '----state-----counterObj')
+// 		return state.countObj
+// 	}, shallowEqual)
+// 	const increment = () => {
+// 		dispatch(incrementAction())
+// 	}
+// 	const incrementObj = () => {
+// 		dispatch(incrementObjAction())
+// 	}
+
+// 	const reset = () => {
+// 		dispatch(resetAction())
+// 	}
+
+// 	const resetObj = () => {
+// 		dispatch(resetObjAction())
+// 	}
+
+// 	console.info('--------render-------')
+//   return (
+// 		<div>
+// 			<div onClick={increment}> increment </div>
+// 		 	<div style={{color: 'red'}}>{counter}</div>
+// 			<div onClick={reset}>重置1</div>
+// 			<div>----------------</div>
+// 			<div onClick={incrementObj}> incrementOBJ </div>
+// 			{/* <div onClick={() => {
+// 							dispatch(incrementObjAction())
+// 						}}> increment </div> */}
+// 		 	<div style={{color: 'red'}}>{counterObj.count}</div>
+// 			<div onClick={resetObj}>重置OBJ</div>
+// 		</div>
+// 	)
+// }
+
+//-------------------------
 
 import * as React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
