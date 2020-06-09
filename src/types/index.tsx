@@ -3,4 +3,5 @@ export interface StoreState {
 	countObj: {
 		count: number;
 	}
+	todos: any
 }

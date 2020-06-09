@@ -1,7 +1,7 @@
 import { Action } from '../actions';
 import { StoreState } from '../types/index';
 
-import { INCREMENT,INCREMENT_OBJECT, DECREMENT, NUMBER1, RESET_OBJECT } from '../contants/index';
+import { INCREMENT,INCREMENT_OBJECT, DECREMENT, NUMBER1, RESET_OBJECT, ADD_TODO } from '../contants/index';
 
 export function selector(state: StoreState, action: Action): StoreState {
 	switch(action.type) {
@@ -19,6 +19,12 @@ export function selector(state: StoreState, action: Action): StoreState {
 			return { ...state, countObj: {
 				count: 1
 			}  };
+		case ADD_TODO:
+			state.todos.push({
+				id: state.todos.length,
+				text: `text${state.todos.length}`
+			})
+			return state;
 		default: 
 			return state;
 	}

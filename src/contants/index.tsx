@@ -13,3 +13,6 @@ export type NUMBER1= typeof NUMBER1;
 export const RESET_OBJECT= 'RESET_OBJECT';
 export type RESET_OBJECT= typeof RESET_OBJECT;
 
+export const ADD_TODO= 'ADD_TODO';
+export type ADD_TODO= typeof ADD_TODO;
+

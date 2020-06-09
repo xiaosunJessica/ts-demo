@@ -18,8 +18,12 @@ export interface ResetObj {
 	type: constants.RESET_OBJECT
 }
 
+export interface AddTodo {
+	type: constants.ADD_TODO
+}
 
-export type Action = Increment | Decrement | Number1 |IncrementObj |ResetObj;
+
+export type Action = Increment | Decrement | Number1 |IncrementObj |ResetObj | AddTodo;
 
 
 export function incrementAction(): Increment {
