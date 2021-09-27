@@ -110,11 +110,12 @@ export default memo(
       ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
       ctx.stroke();
       // ctx.globalCompositeOperation = "source-over";
-      // ctx.globalCompositeOperation = "destination-over";
+      ctx.globalCompositeOperation = "destination-over";
       operation === "fill" ? ctx.fill() : ctx.clip();
     };
 
     const getRandomImgSrc = () => {
+      return "https://i.picsum.photos/id/204/320/160.jpg?hmac=eM209UtCCZUAIcsV5BZnkwfhcFUvdUaQj-L3xgxFpt8";
       return (
         imgUrl ||
         `https://picsum.photos/id/${getRandomNumberByRange(
@@ -160,11 +161,12 @@ export default memo(
       // 随机位置创建拼图形状
       xRef.current = getRandomNumberByRange(L + 10, width - (L + 10));
       yRef.current = getRandomNumberByRange(10 + r * 2, height - (L + 10));
-      drawPath(canvasCtx, xRef.current, yRef.current, "fill");
       drawPath(blockCtx, xRef.current, yRef.current, "clip");
 
       // 画入图片
       canvasCtx.drawImage(img, 0, 0, width, height);
+      drawPath(canvasCtx, xRef.current, yRef.current, "fill");
+
       blockCtx.drawImage(img, 0, 0, width, height);
 
       // 提取滑块并放到最左边
