@@ -109,7 +109,8 @@ export default memo(
       ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
       ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
       ctx.stroke();
-      ctx.globalCompositeOperation = "destination-over";
+      // ctx.globalCompositeOperation = "source-over";
+      // ctx.globalCompositeOperation = "destination-over";
       operation === "fill" ? ctx.fill() : ctx.clip();
     };
 
