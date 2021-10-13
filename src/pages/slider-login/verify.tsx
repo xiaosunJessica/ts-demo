@@ -115,7 +115,6 @@ export default memo(
     };
 
     const getRandomImgSrc = () => {
-      return "https://i.picsum.photos/id/204/320/160.jpg?hmac=eM209UtCCZUAIcsV5BZnkwfhcFUvdUaQj-L3xgxFpt8";
       return (
         imgUrl ||
         `https://picsum.photos/id/${getRandomNumberByRange(
@@ -268,6 +267,7 @@ export default memo(
       if (visible) {
         imgRef.current ? reset() : initImg();
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [visible]);
 
     return (

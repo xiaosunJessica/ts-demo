@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 export const INCREMENT= 'INCREMENT';
 export type INCREMENT= typeof INCREMENT;
 

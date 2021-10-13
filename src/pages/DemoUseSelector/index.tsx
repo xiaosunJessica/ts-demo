@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch, useStore } from 'react-redux';
 import * as constants from '../../contants';
-
+import useInterval from '../../component/useInterval';
 
 export const DemoUseSelector = () => {
 	const dispatch = useDispatch();
@@ -10,9 +10,15 @@ export const DemoUseSelector = () => {
 		console.info('----onAdd')
 		dispatch({type: constants.ADD_TODO})
 	}
+  const [num, setNum ] = React.useState(0)
+
+  useInterval(() => {
+    setNum(num =>num+1)
+  }, 1000)
 	console.info(store, '----storestore')
   return (
 		<div>
+      <div>num: {num}</div>
 			<Child id={1} onAdd={onAdd}/>
 			<Child id={2} onAdd={onAdd}/>
 		</div>
@@ -24,7 +30,6 @@ const Child = (props: {
 	onAdd: () => void;
 }) => {
 	const todo = useSelector((state:any) => {
-		console.info(state, '----state-----', state.todos.filter((t: any) => t.id === props.id))
 		return state.todos.filter((t: any) => t.id === props.id)
 	})
 	const onAdd = () => {
