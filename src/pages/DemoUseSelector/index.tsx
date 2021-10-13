@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch, useStore } from 'react-redux';
 import * as constants from '../../contants';
-import useInterval from '../../component/useInterval';
+import useInterval from '../../component/hooks/useInterval';
 
 export const DemoUseSelector = () => {
 	const dispatch = useDispatch();
