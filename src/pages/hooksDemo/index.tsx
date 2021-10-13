@@ -9,11 +9,15 @@ const HooksDemo = () => {
     }
   );
 
-  const [timeLeft, setTargetDate, parseMs] = useCountDown({
-    targetDate: new Date("2021/11/1"),
+  const [timeLeft, setTargetDate, formattedRes] = useCountDown({
+    // targetDate: new Date("2021/10/14"),
+    targetDate: 10 * 1000,
+    format: "number",
   });
 
-  const dateResult = parseMs(timeLeft);
+  console.log(timeLeft, "timeLefttimeLeft");
+
+  const dateResult = formattedRes;
   return (
     <>
       <div>

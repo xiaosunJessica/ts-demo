@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
+import usePersistFn from "../usePersistFn";
 
 export type TDate = Date | number | string | undefined;
 
@@ -18,32 +19,6 @@ export interface FormattedRes {
   milliseconds: number;
 }
 
-const calcLeft = ({ targetDate, interval, format }: Options) => {
-  if (!targetDate) {
-    return 0;
-  }
-
-  let left: any;
-  if (format === "date") {
-    left = dayjs(targetDate).valueOf() - new Date().getTime();
-  }
-
-  if (format === "number") {
-    if (isNaN(Number(targetDate))) {
-      left = 0;
-    } else {
-      left = (targetDate as number) - interval;
-    }
-  }
-  if (left < 0) {
-    return 0;
-  }
-
-  console.log(targetDate, "targetDatetargetDate", left);
-
-  return left;
-};
-
 const parseMs = (milliseconds: number): FormattedRes => {
   return {
     days: Math.floor(milliseconds / 86400000),
@@ -54,50 +29,75 @@ const parseMs = (milliseconds: number): FormattedRes => {
   };
 };
 
-const useCountDown = (options?: Options) => {
-  const { targetDate, interval = 1000, onEnd, format = "date" } = options || {};
+const useCountdown = (options?: Options) => {
+  const { targetDate, interval = 1000, onEnd, format } = options || {};
 
   const [target, setTargetDate] = useState<TDate>(targetDate);
 
-  const [timeLeft, setTimeLeft] = useState(() =>
-    calcLeft({
-      targetDate: target,
-      format,
-      interval,
-    })
-  );
+  const calcLeft = (t?: TDate) => {
+    if (!t) {
+      return 0;
+    }
+    let left;
+    // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+    if (format === "number") {
+      console.log(t, "----format");
+      left = t <= interval ? 0 : Number(t) - interval;
+      return left;
+    }
+    left = dayjs(t).valueOf() - new Date().getTime();
+    if (left < 0) {
+      return 0;
+    }
+    return left;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(() => calcLeft(target));
+
+  useEffect(() => {}, []);
+  const onEndPersistFn = usePersistFn(() => {
+    if (onEnd) {
+      onEnd();
+    }
+  });
 
   useEffect(() => {
-    console.log(target, "-----targettargettargettarget");
     if (!target) {
+      // for stop
       setTimeLeft(0);
       return;
     }
 
-    setTimeLeft(
-      calcLeft({
-        targetDate: target,
-        format,
-        interval,
-      })
-    );
+    // 立即执行一次
+    setTimeLeft((t) => {
+      if (format === "number") {
+        return calcLeft(t);
+      }
+      calcLeft(target);
+    });
 
     const timer = setInterval(() => {
-      const targetLeft = calcLeft({
-        targetDate: target,
-        format,
-        interval,
-      });
-      setTimeLeft(targetLeft);
-      if (targetLeft === 0) {
-        clearInterval(timer);
-        if (typeof onEnd === "function") {
-          onEnd();
+      setTimeLeft((t) => {
+        if (t === 0) {
+          clearInterval(timer);
+          onEndPersistFn();
+          return 0;
         }
-      }
+        if (format === "number") {
+          return calcLeft(t);
+        }
+        return calcLeft(target);
+      });
     }, interval);
+
+    return () => clearInterval(timer);
   }, [target, interval]);
-  return [timeLeft, setTargetDate, parseMs];
+
+  const formattedRes = useMemo(() => {
+    return parseMs(timeLeft);
+  }, [timeLeft]);
+
+  return [timeLeft, setTargetDate, formattedRes] as const;
 };
 
-export default useCountDown;
+export default useCountdown;
