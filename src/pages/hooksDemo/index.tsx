@@ -10,7 +10,7 @@ const HooksDemo = () => {
   );
 
   const [timeLeft, setTargetDate, formattedRes] = useCountDown({
-    // targetDate: new Date("2021/10/14"),
+    // targetDate: new Date(new Date().getTime() + 10 * 1000),
     targetDate: 10 * 1000,
     format: "number",
   });
