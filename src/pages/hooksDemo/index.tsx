@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import useVirtualList from "../../component/hooks/useVirtualList";
 import useCountDown from "../../component/hooks/useCountDown";
+import useThrottleFn from "../../component/hooks/useThrottleFn";
 const HooksDemo = () => {
   const { list, containerProps, wrapperProps } = useVirtualList(
     Array.from(Array(9999).keys()),
@@ -10,14 +11,21 @@ const HooksDemo = () => {
   );
 
   const [timeLeft, setTargetDate, formattedRes] = useCountDown({
-    targetDate: new Date(new Date().getTime() + 10 * 1000),
-    // targetDate: 10 * 1000,
-    // format: "number",
+    // targetDate: new Date(new Date().getTime() + 10 * 1000),
+    targetDate: 10 * 1000,
+    format: "number",
   });
 
-  console.log(timeLeft, "timeLefttimeLeft");
-
   const dateResult = formattedRes;
+
+  const [throttleValue, setThrottleValue] = useState(0);
+
+  const { run } = useThrottleFn(
+    () => {
+      setThrottleValue(throttleValue + 1);
+    },
+    { wait: 500 }
+  );
   return (
     <>
       <div>
@@ -42,6 +50,12 @@ const HooksDemo = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="throttled">
+        <p style={{ marginTop: 16 }}> Clicked count: {throttleValue} </p>
+        <button type="button" onClick={run}>
+          Click fast!
+        </button>
       </div>
     </>
   );

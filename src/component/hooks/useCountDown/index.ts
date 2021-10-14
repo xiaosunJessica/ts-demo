@@ -90,7 +90,7 @@ const useCountdown = (options?: Options) => {
           interval,
         });
       }
-      calcLeft({
+      return calcLeft({
         t: target,
         format,
         interval,
