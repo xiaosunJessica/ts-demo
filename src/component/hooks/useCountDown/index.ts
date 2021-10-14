@@ -29,30 +29,43 @@ const parseMs = (milliseconds: number): FormattedRes => {
   };
 };
 
+const calcLeft = ({
+  t,
+  format = "date",
+  interval = 1000,
+}: {
+  t?: TDate;
+  format?: "date" | "number";
+  interval?: number;
+}) => {
+  if (!t) {
+    return 0;
+  }
+  let left;
+  // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+  if (format === "number") {
+    left = t <= interval ? 0 : Number(t) - interval;
+    return left;
+  }
+  left = dayjs(t).valueOf() - new Date().getTime();
+  if (left < 0) {
+    return 0;
+  }
+  return left;
+};
+
 const useCountdown = (options?: Options) => {
   const { targetDate, interval = 1000, onEnd, format } = options || {};
 
   const [target, setTargetDate] = useState<TDate>(targetDate);
 
-  const calcLeft = (t?: TDate) => {
-    if (!t) {
-      return 0;
-    }
-    let left;
-    // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-    if (format === "number") {
-      console.log(t, "----format");
-      left = t <= interval ? 0 : Number(t) - interval;
-      return left;
-    }
-    left = dayjs(t).valueOf() - new Date().getTime();
-    if (left < 0) {
-      return 0;
-    }
-    return left;
-  };
-
-  const [timeLeft, setTimeLeft] = useState(() => calcLeft(target));
+  const [timeLeft, setTimeLeft] = useState(() =>
+    calcLeft({
+      t: target,
+      format,
+      interval,
+    })
+  );
 
   useEffect(() => {}, []);
   const onEndPersistFn = usePersistFn(() => {
@@ -71,9 +84,17 @@ const useCountdown = (options?: Options) => {
     // 立即执行一次
     setTimeLeft((t) => {
       if (format === "number") {
-        return calcLeft(t);
+        return calcLeft({
+          t,
+          format,
+          interval,
+        });
       }
-      calcLeft(target);
+      calcLeft({
+        t: target,
+        format,
+        interval,
+      });
     });
 
     const timer = setInterval(() => {
@@ -84,9 +105,17 @@ const useCountdown = (options?: Options) => {
           return 0;
         }
         if (format === "number") {
-          return calcLeft(t);
+          return calcLeft({
+            t,
+            format,
+            interval,
+          });
         }
-        return calcLeft(target);
+        return calcLeft({
+          t: target,
+          format,
+          interval,
+        });
       });
     }, interval);
 

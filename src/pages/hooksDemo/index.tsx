@@ -10,9 +10,9 @@ const HooksDemo = () => {
   );
 
   const [timeLeft, setTargetDate, formattedRes] = useCountDown({
-    // targetDate: new Date(new Date().getTime() + 10 * 1000),
-    targetDate: 10 * 1000,
-    format: "number",
+    targetDate: new Date(new Date().getTime() + 10 * 1000),
+    // targetDate: 10 * 1000,
+    // format: "number",
   });
 
   console.log(timeLeft, "timeLefttimeLeft");
