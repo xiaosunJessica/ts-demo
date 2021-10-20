@@ -6,6 +6,7 @@ const Dazhuanpan = () => {
   let currentDeg: any;
   let pointerRef: any = useRef();
   let resultRef: any = useRef();
+  let containerRef: any = useRef();
   let lights = Array.prototype.slice.call(getEle("light"));
 
   let onRotation = false; // 记录当前是否正在旋转，如果正在旋转，就不能继续点击了
@@ -52,9 +53,9 @@ const Dazhuanpan = () => {
       console.log(nextStatus);
       resultRef.current.innerText = nextStatus.text;
       resultRef.current.style.display = "none";
-      pointerRef.current.style.transform = `rotateZ(${nextStatus.deg}deg)`;
+      containerRef.current.style.transform = `rotateZ(${nextStatus.deg}deg)`;
     });
-    pointerRef.current.addEventListener("transitionend", () => {
+    containerRef.current.addEventListener("transitionend", () => {
       console.log("抽奖结束");
       setTimeout(() => {
         // 等闪烁三下结束
@@ -69,70 +70,72 @@ const Dazhuanpan = () => {
   return (
     <div>
       <div className="wrapper">
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="light"></div>
-        <div className="panel">
-          <div className="sector">
-            <div className="sector-inner">
-              <span>谢谢参与</span>
+        <div className="container" ref={containerRef}>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="light"></div>
+          <div className="panel">
+            <div className="sector">
+              <div className="sector-inner">
+                <span>谢谢参与</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span> 5 0 积分</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>谢谢参与</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>100元话费</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span> 5 0 积分</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>谢谢参与</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>100元话费</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>谢谢参与</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span> 5 0 积分</span>
+              </div>
+            </div>
+            <div className="sector">
+              <div className="sector-inner">
+                <span>10元话费</span>
+              </div>
             </div>
           </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span> 5 0 积分</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>谢谢参与</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>100元话费</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span> 5 0 积分</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>谢谢参与</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>100元话费</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>谢谢参与</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span> 5 0 积分</span>
-            </div>
-          </div>
-          <div className="sector">
-            <div className="sector-inner">
-              <span>10元话费</span>
-            </div>
-          </div>
-          <div className="pointer" ref={pointerRef}>
-            开始抽奖
-          </div>
+        </div>
+        <div className="pointer" ref={pointerRef}>
+          开始抽奖
         </div>
       </div>
       <div className="result" ref={resultRef}></div>

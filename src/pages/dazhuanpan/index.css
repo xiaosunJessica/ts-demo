@@ -131,13 +131,15 @@
   transform: rotate(-19deg);
   color: #d46854;
 }
-.pointer {
+/* .pointer {
   position: absolute;
-  left: 79px;
-  top: 79px;
+  left: 50%;
+  top: 50%;
   z-index: 10;
   height: 30px;
   width: 30px;
+  margin-top: -22px;
+  margin-left: -22px;
   padding: 6px;
   color: #fff899;
   line-height: 15px;
@@ -158,7 +160,7 @@
   border-color: transparent;
   border-bottom-color: #ff5350;
   transform-origin: center;
-}
+} */
 .result {
   margin: 20px 60px;
 }

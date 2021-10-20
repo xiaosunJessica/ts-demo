@@ -1,5 +1,5 @@
 import { throttle } from "lodash";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import useCreation from "../useCreation";
 import useUnmount from "../useUnmount";
@@ -18,16 +18,24 @@ function useThrottleFn<T extends Fn>(fn: T, options?: ThrottleOptions) {
 
   const wait = options?.wait ?? 1000;
 
-  const throttled = useCreation(
-    () =>
-      throttle<T>(
-        ((...args: any[]) => {
-          return fnRef.current(...args);
-        }) as T,
-        wait,
-        options
-      ),
-    []
+  // const throttled = useCreation(
+  //   () =>
+  //     throttle<T>(
+  //       ((...args: any[]) => {
+  //         return fnRef.current(...args);
+  //       }) as T,
+  //       wait,
+  //       options
+  //     ),
+  //   []
+  // );
+
+  const throttled = throttle<T>(
+    ((...args: any[]) => {
+      return fnRef.current(...args);
+    }) as T,
+    wait,
+    options
   );
 
   useUnmount(() => {
