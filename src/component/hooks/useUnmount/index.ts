@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import usePersistFn from "../usePersistFn";
 import { isFunction } from "../utils";

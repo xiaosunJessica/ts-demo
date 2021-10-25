@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import useVirtualList from "../../component/hooks/useVirtualList";
 import useCountDown from "../../component/hooks/useCountDown";

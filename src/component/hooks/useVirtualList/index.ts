@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
 import { useEffect, useRef, MutableRefObject, useState, useMemo } from "react";
 

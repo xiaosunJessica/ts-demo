@@ -6,10 +6,12 @@ import Dazhuanpan from "./pages/dazhuanpan";
 import HooksDemo from "./pages/hooksDemo";
 import VisualList from "./pages/visualList";
 import Dazhuanpan1 from "./pages/dazhuanpan1";
+import NineGame from "./pages/nineGame";
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
+        <NineGame />
         <Dazhuanpan1 />
         <SliderLogin />
         <DemoUseSelector />

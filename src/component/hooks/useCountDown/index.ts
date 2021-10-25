@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import usePersistFn from "../usePersistFn";

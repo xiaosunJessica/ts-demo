@@ -1,11 +1,10 @@
 import * as React from "react";
-import { useSelector, useDispatch, useStore } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as constants from "../../contants";
 import useInterval from "../../component/hooks/useInterval";
 
 export const DemoUseSelector = () => {
   const dispatch = useDispatch();
-  const store = useStore();
   const onAdd = () => {
     console.info("----onAdd");
     dispatch({ type: constants.ADD_TODO });
@@ -13,7 +12,7 @@ export const DemoUseSelector = () => {
   const [num, setNum] = React.useState(0);
 
   useInterval(() => {
-    // setNum(num =>num+1)
+    setNum((num) => num + 1);
   }, 1000);
   return (
     <div>
