@@ -26,7 +26,6 @@ const Dazhuanpan1 = () => {
 
   const onLoadPage = () => {
     const { awards } = params;
-    debugger;
     let { startRadian } = params;
     let canvas: any = document.getElementById("wheelcanvas");
     // 获取canvas的上下文,context含有各种api用来操作canvas
