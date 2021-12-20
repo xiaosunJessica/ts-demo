@@ -7,7 +7,7 @@ import HooksDemo from "./pages/hooksDemo";
 import VisualList from "./pages/visualList";
 import Dazhuanpan1 from "./pages/dazhuanpan1";
 import NineGame from "./pages/nineGame";
-import NineGrid from "./pages/nineGrid";
+// import NineGrid from "./pages/nineGrid";
 import NineGrid1 from "./pages/nineGrid1";
 class App extends React.Component {
   public render() {
