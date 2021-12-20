@@ -55,24 +55,23 @@ class Lottery {
     this.isRunning = true;
     let self: any = this;
 
-    console.log(self, "----selft----");
     loop();
 
     function loop() {
       self.times++;
-      if (self.times > self.cycle && self.prize == self.index) {
+      if (self.times > self.cycle && self.prize === self.index) {
         clearTimeout(self.timer);
         self.fn && self.fn();
       } else {
         if (self.times < self.cycle) {
           self.speed -= 10;
-        } else if (self.times == self.cycle) {
+        } else if (self.times === self.cycle) {
           // self.prize = 1;
         } else {
           if (
             self.times > self.cycle + 10 &&
-            ((self.prize == 0 && self.index == 7) ||
-              self.prize == self.index + 1)
+            ((self.prize === 0 && self.index === 7) ||
+              self.prize === self.index + 1)
           ) {
             self.speed += 110;
           } else {

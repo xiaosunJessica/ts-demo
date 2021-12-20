@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React, { useEffect } from "react";
 import Lottery from "./lottery";
 import "./index.css";
@@ -35,8 +36,8 @@ const NineGrid = () => {
           img.src = imgList[i];
           img.onload = function () {
             count++;
-            if (i == 0) panImg = img;
-            if (count == total) {
+            if (i === 0) panImg = img;
+            if (count === total) {
               callback && callback();
             }
           };
