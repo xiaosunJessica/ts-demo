@@ -1,0 +1,11 @@
+.guaguaka {
+  position: relative;
+  width: 400px;
+  height: 100px;
+}
+.text {
+  position: absolute;
+  left: 130px;
+  top: 35px;
+  z-index: -1;
+}

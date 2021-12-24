@@ -9,11 +9,13 @@ import Dazhuanpan1 from "./pages/dazhuanpan1";
 import NineGame from "./pages/nineGame";
 // import NineGrid from "./pages/nineGrid";
 import NineGrid1 from "./pages/nineGrid1";
+import Guaguaka from "./pages/guaguaka";
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <NineGrid1 />
+        <Guaguaka />
+        {/* <NineGrid1 /> */}
         {/* <NineGrid /> */}
         <NineGame />
         <Dazhuanpan1 />

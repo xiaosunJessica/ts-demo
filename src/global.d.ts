@@ -6,3 +6,5 @@ interface Window {
 interface Math {
   tween: any;
 }
+
+declare var self: Window & typeof globalThis;
