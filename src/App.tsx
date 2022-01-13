@@ -11,6 +11,7 @@ import NineGame from "./pages/nineGame";
 import NineGrid1 from "./pages/nineGrid1";
 import Guaguaka from "./pages/guaguaka";
 console.log("test1");
+console.log("test2");
 class App extends React.Component {
   public render() {
     return (
