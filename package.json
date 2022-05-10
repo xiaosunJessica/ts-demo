@@ -158,5 +158,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.16.4"
   }
 }
