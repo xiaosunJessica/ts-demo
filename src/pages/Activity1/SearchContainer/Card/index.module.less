@@ -1,0 +1,54 @@
+@import '~styles/common';
+.card {
+  width: 1.64rem;
+  height: 1.95rem;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 0.04rem 0px rgba(0, 0, 0, 0.08);
+  border-radius: 0.08rem;
+  margin-bottom: 0.12rem;
+  .headPic {
+    height: 0.98rem;
+    border-radius: 0.08rem 0.08rem 0px 0px;
+    img {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    img[src=""],
+    img:not([src]){ 
+      opacity:0; 
+      border: none;
+    } 
+  }
+  .content {
+    padding: 0 0.09rem;
+    .name {
+      font-size: 0.12rem;
+      color: #333333;
+      line-height: 0.13rem;
+      margin-top: 0.12rem;
+      max-height: 0.20rem;
+      .boldWeight;
+      .ellipsis;
+    }
+    .type {
+      margin-top: 0.02rem;
+      font-size: 0.11rem;
+      color: #333333;
+      line-height: 0.17rem;
+      .baseWeight;
+      max-height: 0.20rem;
+      .ellipsis;
+    }
+    .summary {
+      font-size: 0.12rem;
+      color: #999999;
+      line-height: 0.15rem;
+      margin-top: 0.08rem;
+      width: 100%;
+      height: 0.30rem;
+      .ellipsis2;
+      .baseWeight;
+    }
+  }
+}

@@ -8,3 +8,8 @@ interface Math {
 }
 
 declare var self: Window & typeof globalThis;
+
+declare module '*.less' {
+  const content: any;
+  export default content;
+}

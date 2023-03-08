@@ -1,0 +1,75 @@
+@import '~styles/common';
+@imagesPath: "../../../images/activity";
+.searchContainer {
+  padding: 0.16rem;
+  .header {
+    display: flex;
+    align-items: center;
+    .iconBack {
+      width: 0.14rem;
+      height: 0.14rem;
+      border-left: 1px solid #999;
+      border-bottom: 1px solid #999;
+      transform: rotate(45deg);
+    }
+    .searchWrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      .searchBar {
+        flex: 1;
+        background-color: inherit;
+        font-size: 0.14rem;
+        :global {
+          .am-search-input {
+            height: 0.32rem;
+            border-radius: 0.16rem;
+            input[type="search"] {
+              height: 0.32rem;
+              padding: 0 0.15rem 0 0.35rem;
+            }
+            .am-search-synthetic-ph {
+              text-align: left;
+              padding-left: 0.16rem;
+              height: 0.32rem;
+              line-height: 0.32rem;
+              .am-search-synthetic-ph-icon {
+                vertical-align: -0.02rem;
+                 background-image: url("@{imagesPath}/search@2x.png") ;
+              }
+            }
+          }
+          .am-search-cancel {
+            color: #666666;
+            font-size: 0.14rem;
+          }
+        }
+      }
+      .btnSearch {
+        background: linear-gradient(122deg, #7D9CFF 0%, #3539F7 100%);
+        border-radius: 0.16rem;
+        font-size: 0.14rem;
+        color: #FFFFFF;
+        height: 0.26rem;
+        line-height: 0.26rem;
+        .boldWeight;
+      }
+    }
+  }
+  .result {
+    margin-top: 0.20rem;
+    .title {
+      font-size: 0.16rem;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #666666;
+      line-height: 0.22rem;
+    }
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 0.09rem;
+    }
+  }
+}

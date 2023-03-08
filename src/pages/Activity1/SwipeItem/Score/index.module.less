@@ -1,0 +1,125 @@
+@import "~@/styles/common";
+@imagesPath: "../../../../images";
+.scoreCmpt {
+  .scoreList {
+    display: flex;
+    // padding-left: 0.10rem;
+    .score {
+      font-size: 0.18rem;
+      font-family: DINAlternate-Bold, DINAlternate;
+      font-weight: bold;
+      color: #FF4057;
+      line-height: 0.21rem;
+      height: 0.21rem;
+      text-align: center;
+    }
+    .iconWrap {
+      width: 10%;
+      padding: 0 0.03rem;
+      display: inline-block;
+      .scoreIcon {
+        width: 100%;
+        padding-bottom: 100%;
+        display: inline-block;
+        &.icon1 {
+          background: url("@{imagesPath}/activity/ic-已评分.svg") no-repeat center center/100% 100%;
+        }
+        &.icon5 {
+          background: url("@{imagesPath}/activity/ic-0.5分.svg") no-repeat center center/100% 100%;
+        }
+        &.icon0 {
+          background: url("@{imagesPath}/activity/ic-未评分.svg") no-repeat center center/100% 100%;
+        }
+      }
+    }
+  }
+  .commentContent {
+
+    .baseWeight;
+    font-size: 0.14rem;
+    color: #333333;
+    line-height: 0.20rem;
+  }
+  .error {
+    font-size: 0.10rem;
+    color: #ff4d4f;
+  }
+  .comment {
+    .item {
+      display: flex;
+      margin-top: 0.05rem;
+      .required {
+        color: #ff415b;
+        font-size: 0.10rem;
+        padding-right: 0.03rem;
+        width: 0.10rem;
+      }
+    }
+    .textareaWrapper {
+      flex: 1;
+      .textarea {
+        background: #F8F8F8;
+        border-radius: 0.04rem;
+        border: 1px solid #F0F0F0;
+        // height: 0.60rem;
+        textarea {
+          &::-webkit-input-placeholder {
+            .baseWeight!important;
+            font-size: 0.14rem!important;
+            color: #ccc!important;
+            line-height: 0.20rem!important;
+          }
+          &::-moz-placeholder {
+            .baseWeight;
+            font-size: 0.14rem!important;
+            color: #ccc!important;
+            line-height: 0.20rem!important;
+          }
+          &::-ms-input-placeholder {
+            .baseWeight;
+            font-size: 0.14rem!important;
+            color: #ccc!important;
+            line-height: 0.20rem!important;
+          }
+        }
+        &.textareaRequired {
+          textarea {
+            &::-webkit-input-placeholder {
+              color: #FA6400!important;
+            }
+            &::-moz-placeholder {
+              color: #FA6400!important;
+            }
+            &::-ms-input-placeholder {
+              color: #FA6400!important;
+            }
+          }
+
+        }
+      }
+     
+      .tip {
+        font-size: 0.12rem;
+        color: #999999;
+        line-height: 0.17rem;
+        text-align: center;
+        margin-top: 0.12rem;
+        width: 100%;
+        display: inline-block;
+        .baseWeight
+      }
+    }
+    .btnSubmit {
+      width: 100%;
+      height: 0.48rem;
+      line-height: 0.48rem;
+      margin-top: 0.12rem;
+      background: linear-gradient(133deg, #6E90FF 0%, #3539F7 100%);
+      border-radius: 0.24rem;
+      font-size: 0.18rem;
+      color: #FFFFFF;
+      padding: 0;
+      .boldWeight;
+    }
+  }
+}

@@ -46,7 +46,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Test = 'a' |'b'|'a1'
 type Key1 = 'a'
@@ -56,11 +56,25 @@ type TestExclude = Exclude<Test, Key1>
 
 
 const Test1 = () => {
-  const [studyNum, setStudyNum] = useState<any>(null);
+  const [studyNum, setStudyNum] = useState<any>(0);
+ 
+
+  // 死循环
+  // useEffect(() => {
+  //   setStudyNum(studyNum+1)
+  // })
+
+
+  // const [sObj, setSObj] = useState({})
+  // useEffect(() => {
+  //   setSObj({})
+  // }, [sObj])
+
   const onRandom = () => {
     setStudyNum(Math.floor(Math.random() * 120))
   }
   
+
   return <div>{studyNum} <div className="btn" onClick={onRandom}>换题</div></div>
 }
 

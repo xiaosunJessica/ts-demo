@@ -1,0 +1,53 @@
+@import '~styles/common';
+@imagesPath: "../../images";
+.activity-container {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  background: #101116;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 0.40rem;
+    padding: 0.12rem 0.16rem;
+    // background-color: #101116;
+    .address {
+      font-size: 0.12rem;
+      .baseWeight;
+      color: #7B87EA;
+      line-height: 0.17rem;
+      .iconAddress {
+        width: 0.10rem;
+        height: 0.10rem;
+        display: inline-block;
+        margin-right: 0.10rem;
+        background: url("@{imagesPath}/activity/ic-地址.svg") no-repeat center center/100% 100%;
+      }
+      .city {
+        display: inline-block;
+      }
+    }
+    .tabList {
+      font-size: 0.16rem;
+      .baseWeight;
+      line-height: 0.22rem;
+      .tab {
+        display: inline-block;
+        margin: 0 0.14rem;
+        color: rgba(255, 255, 255, 0.5);
+        &.active {
+          color: #FFFFFF;
+          .boldWeight;
+        }
+      }
+    }
+    .search {
+      width: 0.13rem;
+      height: 0.13rem;
+      background: url("@{imagesPath}/activity/search@2x.png") no-repeat center center/100% 100%;
+    }
+  }
+}

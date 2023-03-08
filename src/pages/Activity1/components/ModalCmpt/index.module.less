@@ -1,0 +1,26 @@
+@import '~styles/common';
+.ModalCmpt {
+  position: absolute;
+  bottom: 0;
+  background-color: #ffffff;
+  border-radius: 0.20rem 0.20rem 0px 0px;
+  padding: 0.24rem 0.16rem;
+  max-height: 80vh;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  >.header {
+    margin-bottom: 0.15rem;
+    > p {
+      font-size: 0.18rem;
+      color: #222222;
+      line-height: 0.15rem;
+      .boldWeight;
+    }
+    .close {
+      position: absolute;
+      right: 0.16rem;
+      top: 0.24rem;
+    }
+  }
+}
