@@ -1,12 +1,12 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useContext,  useState } from 'react';
 import styles from './index.module.less';
 import moment from 'moment';
 import { Modal } from 'antd-mobile';
 import { CommentItemType } from './index'; 
 import { CommentInfoContext } from './context'; 
-import { useStore } from 'react-redux';
 
-const alert = Modal.alert;
 
 const Item = React.memo((props: {
   children?: React.ReactNode;

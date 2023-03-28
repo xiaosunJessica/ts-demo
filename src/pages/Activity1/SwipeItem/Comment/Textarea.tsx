@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, useContext, useEffect, useRef } from 'react';
-import { TextArea, Button } from "antd-mobile";
+import { TextArea } from "antd-mobile";
 import useForm from '../../formHooks';
-import activity1Service from '../../service';
 import { CommentInfoContext } from './context';
 import ModalCmpt from '../../components/ModalCmpt';
 import styles from './index.module.less';
@@ -28,12 +28,12 @@ const CommentTextarea = (props: {
   }, [context.commentInfo])
 
   // 取消回复人
-  const onCancel = useCallback(() => {
-    context.setCommentInfo(params => ({
-      ...params,
-      replyInfo: {}
-    }))
-  }, [context])
+  // const onCancel = useCallback(() => {
+  //   context.setCommentInfo(params => ({
+  //     ...params,
+  //     replyInfo: {}
+  //   }))
+  // }, [context])
 
   const submit = useCallback(async () => {
     const values = await validateFields();

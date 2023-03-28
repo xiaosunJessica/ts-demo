@@ -162,6 +162,8 @@
     ]
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.16.4"
+    "@types/webpack-env": "^1.16.4",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0"
   }
 }

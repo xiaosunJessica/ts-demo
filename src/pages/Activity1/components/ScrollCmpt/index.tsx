@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styles from './index.module.less';
 const clientHeight = document.body.clientHeight;
 interface ScrollCmptProps {
@@ -13,8 +13,6 @@ const ScrollCmpt = (props: ScrollCmptProps) => {
   const {
     isScroll,
     maxHeight,
-    height,
-    ...other
   } = props;
   // 滚动容器
   const scrollContainerRef: any = useRef<HTMLDivElement>();

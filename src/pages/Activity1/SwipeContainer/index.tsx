@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useMemo, useState, useRef, useEffect, useContext, useCallback } from 'react';
-import { Toast} from 'antd-mobile';
 import { useDispatch, useSelector } from 'react-redux';
 import SwipeItem from '../SwipeItem';
 import { ActiveTabContext } from '../context';
 import activity1Service from '../service';
 // import { updateFollowedList, updateActivityList } from 'stores/actions/activity1Action';
 import styles from './index.module.less';
+import { ActivityData } from '../context';
 // import { usePlayIcon } from '../SwipeItem/hooks';
 const clientHeight = document.documentElement.clientHeight;
 
@@ -27,13 +29,16 @@ type ActivityListData = {
   type: string;
 }
 
+
+
 const pageSize = 10
 
 const SwipeContainer = function () {
+  const context = useContext(ActivityData)
+  const [activityShowList, setactivityShowList] = useState<any[]>([])
+  const [activityCacheList, setactivityCacheList] = useState<any[]>([])
 
-  const dispatch = useDispatch();
-
-  const { activityShowList, activityCacheList } = useSelector((state: any) => state.activity1 || {})
+  // const { activityShowList, activityCacheList } = useSelector((state: any) => state.activity1 || {})
 
   // 外层tab是关注还是推荐
   const { activeTab } = useContext(ActiveTabContext);
@@ -71,11 +76,15 @@ const SwipeContainer = function () {
           return ({ ...params, loading: true, })
         });
       }
-      const res: ActivityListData[] = await activity1Service.fetchActivity1List({
-        tab: activeTab === 'follow' ? 0 : 1,
-        page: params.pageNo ? params.pageNo : dataList.pageNo,
-        pageSize,
-      })
+      // const res: ActivityListData[] = await activity1Service.fetchActivity1List({
+      //   tab: activeTab === 'follow' ? 0 : 1,
+      //   page: params.pageNo ? params.pageNo : dataList.pageNo,
+      //   pageSize,
+      // })
+
+      const res = context.activityShowList;
+
+      console.log(res, '-----res----res---')
       if (Array.isArray(res)) {
         if (params.pageNo === 1) {
           const _dataList = _combine(res);
@@ -83,6 +92,7 @@ const SwipeContainer = function () {
           //   activityCacheList: _dataList,
           //   activityShowList: _dataList,
           // }))
+          setactivityShowList(_dataList)
           setDataList(params => {
             return ({ ...params, cacheList: _dataList, showList: _dataList, hasMore: !!res.length, loading: false, pageNo: (params.pageNo || 1) + 1  })
           });
@@ -93,6 +103,7 @@ const SwipeContainer = function () {
         //   activityCacheList: _dataList,
         //   activityShowList: _dataList,
         // }))
+        //  setactivityShowList(_dataList)
         setDataList(params => {
           return ({ ...params, cacheList: _dataList, showList: _dataList, hasMore: !!res.length, loading: false,  pageNo: (params.pageNo || 1) + 1  })
         });
@@ -223,7 +234,7 @@ const SwipeContainer = function () {
 
         slickSlideContainer?.querySelectorAll('video')?.forEach((video) => {
           const idx = (video?.parentNode?.parentNode?.parentNode as any)?.getAttribute('data-itemIdx')
-          if (idx !== undefined && idx == imgIndex && video.paused) {
+          if (idx !== undefined && idx === imgIndex && video.paused) {
             setTimeout(() => {
               video.currentTime = 0;
               if (video?.parentNode?.parentNode?.parentNode 
@@ -308,7 +319,7 @@ const SwipeContainer = function () {
         const videoList = slickSlideContainer?.querySelectorAll('video')
         if (videoList && videoList[0]) {
           const firstVideoIdx = (videoList[0]?.parentNode?.parentNode?.parentNode as any)?.getAttribute('data-itemIdx');
-          if (firstVideoIdx == 0) {
+          if (firstVideoIdx === 0) {
             setTimeout(() => {
               videoList[0].currentTime = 0;
               if (videoList[0]?.parentNode?.parentNode?.parentNode 
@@ -329,7 +340,7 @@ const SwipeContainer = function () {
       touchMove,
       touchEnd
     }
-  }, [dataList, activityShowList, activityCacheList])
+  }, [dataList, activityShowList])
 
   // 接口调整后,整合数据
   const _combine = (data) => {
@@ -347,7 +358,8 @@ const SwipeContainer = function () {
         imgIndex: item.imgIndex || 0, // 当前图片横向滚动的位置
         slideIndex: item.hasOwnProperty('slideIndex') ?
           item.slideIndex :
-          idx + globalDataIdx.current ? activityCacheList.length : 0,
+          // idx + globalDataIdx.current ? activityCacheList.length : 0,
+          0,
         score: (stat.scoreNum || stat.scoreTotal) ? Number(stat.scoreTotal / stat.scoreNum).toFixed(1) : 0,
         type: item.typeName ? `#${item.typeName.join('#')}` : '',
         followed: activeTab === 'follow' ? true : false
@@ -413,6 +425,10 @@ const SwipeContainer = function () {
     }
   }
 
+  useEffect(() => {
+    init();
+  }, [])
+
 
   useEffect(() => {
     document.documentElement.style.overflow = 'hidden'
@@ -456,7 +472,7 @@ const SwipeContainer = function () {
       // Toast.info('关注成功', 2);
       // dispatch(updateFollowedList(result))
     }
-  }, [activityShowList, activityCacheList])
+  }, [activityShowList])
 
   return (
     <div style={{ height: '100%' }}>
@@ -477,6 +493,7 @@ const SwipeContainer = function () {
         <div className={styles.sliderContainer} ref={sliderContainerRef}>
           {
             useMemo(() => activityShowList?.map((data: any, index) => {
+              console.log(data, '----data----')
               return (
                 <div className={styles.slickSlide} key={`activeSlickSlide${index}`} data-slideIdx={index} id={`activeSlickSlide${index}`}>
                   <SwipeItem {...data} swipeItemIdx={index} onFollow={onFollow} activeItem={index === globalDataIdx.current} />

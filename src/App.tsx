@@ -4,16 +4,16 @@ import "./App.css";
 // import SliderLogin from "./pages/slider-login";
 // import Dazhuanpan from "./pages/dazhuanpan";
 // import HooksDemo from "./pages/hooksDemo";
-import VisualList from "./pages/visualList";
+// import VisualList from "./pages/visualList";
 // import Dazhuanpan1 from "./pages/dazhuanpan1";
 // import NineGame from "./pages/nineGame";
 // import NineGrid from "./pages/nineGrid";
 // import NineGrid1 from "./pages/nineGrid1";
-import Love from "./pages/love";
-import Test from "./pages/test";
-import test, { testVal } from './test.js'
+// import Love from "./pages/love";
+// import Test from "./pages/test";
+import test from './test.js'
 // import Guaguaka from "./pages/guaguaka";
-import Dongxiao from "./pages/dongxiao";
+// import Dongxiao from "./pages/dongxiao";
 import Activity1 from "./pages/Activity1";
 class App extends React.Component {
   public render() {
@@ -35,7 +35,7 @@ class App extends React.Component {
         <VisualList /> */}
         {/* <Love/> */}
         {/* <Test /> */}
-          <VisualList />
+          {/* <VisualList /> */}
         {/* <Dongxiao /> */}
       </div>
     );

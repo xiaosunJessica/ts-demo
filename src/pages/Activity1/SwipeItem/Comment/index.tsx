@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react';
 import List from './List';
 import TextareaCmpt, { Textarea } from './Textarea';
@@ -40,14 +42,14 @@ export type CommentResultType = {
   pageNo: number
 }
 
-type CommentItemCompType = {}
+// type CommentItemCompType = {}
 
-type CommentResultCompType = {
-  totalCount: number;
-  pageList: CommentItemType[];
-  pageSize: number;
-  pageNo: number
-}
+// type CommentResultCompType = {
+//   totalCount: number;
+//   pageList: CommentItemType[];
+//   pageSize: number;
+//   pageNo: number
+// }
 
 type CommentInfoType = {
   replyInfo: any|undefined; // 回复人信息
@@ -55,10 +57,10 @@ type CommentInfoType = {
   itemKey?: number; // 操作的主评论index
 }
 
-type CommentContextType = {
-  commentInfo: CommentInfoType,
-  setCommentInfo: Function;
-}
+// type CommentContextType = {
+//   commentInfo: CommentInfoType,
+//   setCommentInfo: Function;
+// }
 
 let requestFlag = false
 

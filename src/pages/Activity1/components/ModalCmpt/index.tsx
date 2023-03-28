@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /mcg-circle-fe/client/src/pages/Activity1/components/ModalCmpt/index.tsx
  */
-import React, { useEffect, useMemo, useState, useContext, useCallback } from 'react';
+import React from 'react';
 import Mask from '../../Modal/Mask';
 // import { Icon } from 'antd-mobile';
 import styles from './index.module.less';

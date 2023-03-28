@@ -1,12 +1,13 @@
-import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useRef, useEffect, useContext } from 'react';
 import styles from './index.module.less';
 import { useScore } from '../hooks';
 import { TextArea, Button, Toast } from 'antd-mobile';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useForm from '../../formHooks';
 import activity1Service from '../../service';
 import ModalCmpt from '../../components/ModalCmpt';
 import { SwipeItemProps } from '../../index';
+import { ActivityData } from '../../context';
 // import { ActivityIndicator } from 'antd-mobile';
 
 const initScoreList = (score: number): number[] => {
@@ -25,8 +26,7 @@ const initScoreList = (score: number): number[] => {
 const Score = React.memo((props: {
   setShowScore: Function;
 } & SwipeItemProps) => {
-  const dispatch = useDispatch();
-  const { activityShowList, activityCacheList } = useSelector((state: any) => state.activity1)
+  const { activityShowList, activityCacheList } = useContext(ActivityData)
 
   const sumScore = useRef(0);
   const lastIdx = useRef(0);

@@ -1,5 +1,32 @@
 .dongxiao {
-  
+  position: relative;
+  max-width: 1000px;
+  overflow: hidden;
+  display: flex;
+}
+
+.dongxiao::before {
+  position: absolute;
+  display: block;
+  content: "";
+  left: 0;
+  height: 100%;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to right, #eabb66, transparent);
+}
+
+.dongxiao::after {
+  position: absolute;
+  display: block;
+  content: "";
+  right: 0;
+  height: 100%;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to left, #eabb66, transparent);
 }
 
 ul {
@@ -7,7 +34,10 @@ ul {
   padding: 0;
   display: flex;
   list-style-type: none;
-
+  background: #eabb66;
+  position: relative;
+  width: 100%;
+  overflow: auto;
 }
 
 li {
@@ -20,15 +50,66 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s;
 }
 
-li.active {
+li .bg-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* z-index: -1; */
   background-image: url(./images/avatars_background.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  opacity: 0;
+}
+
+
+li.active {
+  /* background-image: url(./images/avatars_background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%; */
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+
+li:hover .bg-img {
+  opacity: 1;
+  animation: hover-animation 0.6s 2;
+  /* transition: opacity 0.3s ease-in-out; */
+}
+
+li.active .bg-img {
+  opacity: 1;
+  animation: none;
 }
 
 li img {
-  width: 80px;
+  width: 85px;
+  z-index: 1;
+}
+
+@keyframes hover-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  /* 25% {
+    transform: scale(0.7);
+  } */
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  } 
 }

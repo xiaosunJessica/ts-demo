@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * @Author: your name
  * @Date: 2021-02-25 10:42:35
@@ -6,7 +8,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /mcg-circle-fe/client/src/pages/Activity1/SwipeItem/hooks.tsx
  */
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 // import { downVideo, isVideo } from 'utils/commonHelper'
 
 // 评论状态
@@ -95,7 +97,7 @@ export const useLongPress = (props: {
     };
     const touchend1 = function(){
         clearTimeout(timeOutEvent);
-        if(timeOutEvent!=0 && longClick==0){//点击
+        if(timeOutEvent!==0 && longClick===0){//点击
             //此处为点击事件----在此处添加跳转详情页
             console.log('--------dianji----')
         }

@@ -7,10 +7,8 @@
  * @FilePath: /mcg-circle-fe/client/src/pages/Activity1/index.tsx
  */
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
 import SwipeContainer from './SwipeContainer';
-import { Link } from "react-router-dom";
 import { ActiveTabContext } from './context';
 import activity1Service from './service';
 // import { updateFollowedList } from 'stores/actions/activity1Action';
@@ -34,10 +32,18 @@ export type SwipeItemProps = {
   summary: string;
   swipeItemIdx?: number;
 }
+
+function fontAdapt(baseWidth = 7.5, maxWidth = Infinity) {
+  const docEl = document.documentElement;
+  docEl.style.fontSize = `${Math.min(docEl.clientWidth, maxWidth) / baseWidth}px`;
+}
+
+fontAdapt(3.75)
+
+
 const Activity1 = function () {
   // tab 包括推荐 +关注
   const [activeTab, setActiveTab] = useState<'follow' | 'recommend'>('recommend');
-  const dispatch = useDispatch();
 
   const getAllFollowed = async () => {
     const res = await activity1Service.getAllFollowedList({
@@ -50,10 +56,6 @@ const Activity1 = function () {
   useEffect(() => {
     getAllFollowed()
   }, [])
-
-  const handleChangeCity = (val) => {
-    console.log(val, '--------val-----val----')
-  };
   return (
     <ActiveTabContext.Provider 
       value={{ 
@@ -74,11 +76,6 @@ const Activity1 = function () {
               className={`${styles.tab} ${activeTab === 'recommend' ? styles.active : ''}`}
               onClick={useCallback(() => setActiveTab('recommend'), [])} >
               推荐
-            </div>
-            <div
-              className={`${styles.tab} ${activeTab === 'follow' ? styles.active : ''}`}
-              onClick={useCallback(() => setActiveTab('follow'), [])} >
-              关注
             </div>
           </div>
           {/* <Link className={styles.search} to="/p/new/activitySearch" /> */}

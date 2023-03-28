@@ -1,5 +1,3 @@
-import { GET, POST, PUT, DELETE } from "./helper";
-
 interface GiveScoreRequest {
   cgId: number,
   cgName: string,

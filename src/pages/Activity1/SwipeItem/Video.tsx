@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback,  useRef, useState } from 'react';
 import styles from './video.module.less';
 // import { usePlayIcon } from './hooks';
 // import { Icon } from 'antd-mobile';
@@ -11,9 +13,7 @@ const VideoCmpt = (props: {
   active: boolean;
 }) => {
 
-  let loaded = false;  
   const [ loading, setLoading ] = useState(true)
-  const [ showPlayIcon, setPlayIcon ] = useState<boolean>(false)
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const onPlayVideo = () => {
@@ -55,7 +55,6 @@ const VideoCmpt = (props: {
   }
 
   const onLoadedMetadata = () => {
-    loaded= true;
     setLoading(false);
   }
 
@@ -76,6 +75,7 @@ const VideoCmpt = (props: {
     // this.videoProcess = parseInt((currentTime / duration).toFixed(2) * 100)
   }
 
+  console.log(props.url, '-----url----')
   if (!props.url) return null;
   return  <div>
             <video 
@@ -90,7 +90,7 @@ const VideoCmpt = (props: {
               poster={''}
               //muted
               // autoPlay
-              // src={props.url}
+              src={props.url}
               onClick={onPlayVideo}
               onEnded={onPlayEnd}
               onLoadedMetadata={onLoadedMetadata}

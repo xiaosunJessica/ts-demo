@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useMemo, useState, useCallback, useContext } from 'react';
 import { SwipeItemProps } from '../index';
 import VideoCmpt from './Video';
 import Image from './Image';
@@ -10,6 +9,7 @@ import moment from 'moment';
 import { getCharLen, isVideo } from '../utils';
 import activity1Service from '../service';
 import styles from './index.module.less';
+import { ActivityData } from '../context';
 const defaultAvatar = '';
 const clientWidth = document.documentElement.clientWidth;
 interface SwipeItemCompProps extends SwipeItemProps {
@@ -50,8 +50,8 @@ const RightContainer = (props: SwipeItemCompProps & {
   setShowScore: Function;
   onFollow: Function;
 }) => {
-  const { followedList } = useSelector((state: any) => state.activity1);
-
+  // const { followedList } = useSelector((state: any) => state.activity1);
+  const { followedList } = useContext(ActivityData)
   const { onShowComment } = useComment(props);
   const { onShowScore } = useScore(props);
   // 外层tab是关注还是推荐
@@ -91,7 +91,7 @@ const RightContainer = (props: SwipeItemCompProps & {
           </div>
           <div className={styles.followStatus}>
             {
-              followedList?.includes(props.circleId) ?
+              followedList?.includes(props?.circleId) ?
                 <label className={styles.followed}>已关注</label> :
                 <label className={styles.unFollow} onClick={onFollow}>关注</label>
             }
@@ -136,12 +136,14 @@ const ListContainer = (props: SwipeItemCompProps) => {
       <div className={styles.list} style={{ width: `${list.length * clientWidth}px`, transform: `translate3d(-${(props.imgIndex || 0) * clientWidth}px, 0, 0)` }}>
         {
           useMemo(() => list?.map((l: any, idx: number) => {
+            console.log(l, '------lllll')
             return (
               <div className={styles.item} key={`$${l.image}-${idx}`} style={{ width: `${clientWidth}px` }} data-itemIdx={idx}>
-                {
+               <div className={styles.videoWrapper}><VideoCmpt url={l.image} active={props.imgIndex===idx && !!props.activeItem} /> </div>
+                {/* {
                   !!isVideo(l.image) ? <div className={styles.videoWrapper}><VideoCmpt url={l.image} active={props.imgIndex===idx && !!props.activeItem} /> </div>:
                   <div className={styles.imgWrapper}><Image url={l.image} /></div>
-                }
+                } */}
               </div>
             )
           }), [list])
